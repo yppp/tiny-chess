@@ -22,3 +22,14 @@ randomness, so the same position always produces the same move.
 It loops against the HTTP env at `MAKEFUN_ENV_URL`: `POST /game {}` to get the
 game in play, and `POST /move {"game": n, "move": "e2e4"}` for each move, until
 the env answers `status: "done"`.
+
+## Verification
+
+- Start position perft(4): 197,281.
+- Kiwipete FEN perft(3): 97,862.
+- Practice trial-0 with the final engine: 2 wins, 2 draws, 2 losses; practice
+  Elo 1,279.
+- Fixed during development: en-passant unmake put the captured pawn back on
+  the wrong square and skipped its incremental-evaluation update. The undo
+  record is now stored after capture resolution and the pawn is restored at its
+  true square.
